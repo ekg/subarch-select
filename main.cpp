@@ -88,11 +88,8 @@ bool is_matching_features(const std::string s) {
     std::istringstream iss(s);
     std::string feature;
     while(std::getline(iss, feature, ',')) {
-        std::cout << feature << '\n';
         if (!has_feature(feature)) {
             return false;
-        } else {
-            std::cout << "it has it" << '\n';
         }
     }
     return true;
@@ -107,6 +104,18 @@ int main(int argc, char** argv) {
         return 0;
     }
 
+    // if env variable SUBARCH_DEBUG is set then we print debug messages
+    bool debug = false;
+    if (std::getenv("SUBARCH_DEBUG") != NULL) {
+        debug = true;
+    }
+    // logging function
+    auto log = [&](const std::string& msg) {
+        if (debug) {
+            std::cerr << "[subarch-select] " << msg << '\n';
+        }
+    };
+
     // parse the command line arguments
     // if we find a double dash, then we're done parsing the arguments
     int i = 1;
@@ -114,24 +123,24 @@ int main(int argc, char** argv) {
     for ( ; i < argc; ) {
         // copy from argv into strings
         std::string features = argv[i];
-        std::cerr << "features: " << features << '\n';
         if (features == "--") {
             // we're done parsing the arguments
-            std::cerr << "Hi" << std::endl;
+            //std::cerr << "Hi" << std::endl;
             i += 1;
             break;
         }
-        if (is_matching_features(features)) {
+        if (path.empty() && is_matching_features(features)) {
+            log("has features: " + features);
             path = argv[i+1];
         }
         i += 2;
     }
     if (!path.empty()) {
-        std::cerr << "Executing " << path << '\n';
-        std::cerr << "With arguments:\n";
+        std::stringstream ss;
         for (int j = i; j < argc; ++j) {
-            std::cerr << argv[j] << '\n';
+            ss << " " << argv[j];
         }
+        log("executing: " + path + ss.str());
         execv(path.c_str(), argv+i-1);
     } else {
         return 1;
