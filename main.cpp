@@ -8,16 +8,6 @@ using namespace cpu_features;
 // For C++, add `using namespace cpu_features;`
 static const X86Features features = GetX86Info().features;
 
-void Compute(void) {
-    if (features.aes && features.sse4_2) {
-        std::cout << "AES-NI and SSE4.2 are supported\n";
-        // Run optimized code.
-    } else {
-        std::cout << "AES-NI and SSE4.2 are not supported\n";
-        // Run standard code.
-    }
-}
-
 bool has_feature(const std::string f) {
     if (f == "fpu") return features.fpu;
     if (f == "tsc") return features.tsc;
@@ -127,7 +117,7 @@ int main(int argc, char** argv) {
         std::cerr << "features: " << features << '\n';
         if (features == "--") {
             // we're done parsing the arguments
-            std::cout << "Hi" << std::endl;
+            std::cerr << "Hi" << std::endl;
             i += 1;
             break;
         }
@@ -137,10 +127,10 @@ int main(int argc, char** argv) {
         i += 2;
     }
     if (!path.empty()) {
-        std::cout << "Executing " << path << '\n';
-        std::cout << "With arguments:\n";
+        std::cerr << "Executing " << path << '\n';
+        std::cerr << "With arguments:\n";
         for (int j = i; j < argc; ++j) {
-            std::cout << argv[j] << '\n';
+            std::cerr << argv[j] << '\n';
         }
         execv(path.c_str(), argv+i-1);
     } else {
