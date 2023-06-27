@@ -25,3 +25,4 @@ This is `libcpu-features-dev` on Debian/Ubuntu systems.
 ## author
 
 Erik Garrison <erik.garrison@gmail.com>
+Michael R. Crusoe <crusoe@debian.org>
