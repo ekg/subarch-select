@@ -1,6 +1,6 @@
 # subarch-select
 
-Pick an executable based on CPU capabilities.
+Pick an executable based on CPU capabilities and pass the remaining command line flags to the target program. Designed for x86-64 systems, including the x86-64 [microarchitecture levels](https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels) (`x86-64-v2`, `x86-64-v3`, `x86-64-v4`).
 
 ## usage
 
