@@ -1,4 +1,4 @@
-#include <cpu_features/cpuinfo_x86.h>
+#include "cpuinfo_x86.h"
 #include <iostream>
 #include <sstream>
 #include <unistd.h>
