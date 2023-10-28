@@ -11,8 +11,7 @@ static const X86Features features = GetX86Info().features;
 bool has_feature(const std::string f) {
     if (f == "x86-64-v2") return features.cx16 && features.popcnt && features.sse3 && features.sse4_1 && features.sse4_2 && features.ssse3;
     // ^^ missing is LAHF-SAHF
-    if (f == "x86-64-v3") return features.avx && features.avx2 && features.bmi1 && features.bmi2 && features.f16c && features.movbe && features.cx16 && features.popcnt && features.sse3 && features.sse4_1 && features.sse4_2 && features.ssse3;
-    // TODO: which is plain "FMA"?
+    if (f == "x86-64-v3") return features.avx && features.avx2 && features.bmi1 && features.bmi2 && features.f16c && features.fma3 && features.movbe && features.cx16 && features.popcnt && features.sse3 && features.sse4_1 && features.sse4_2 && features.ssse3;
     // missing is LZCNT & OSXSAVE
     if (f == "x86-64-v4") return features.avx512f && features.avx512bw && features.avx512cd && features.avx512dq && features.avx512vl && features.avx && features.avx2 && features.bmi1 && features.bmi2 && features.f16c && features.movbe && features.cx16 && features.popcnt && features.sse3 && features.sse4_1 && features.sse4_2 && features.ssse3;
     if (f == "fpu") return features.fpu;
