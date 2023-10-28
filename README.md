@@ -13,6 +13,12 @@ Usage: subarch-select [features] [path] ... [--] [program arguments]
 Example: subarch-select avx2,sse4_2 /path/to/program-avx2 avx,sse2 /path/to/program-avx -- --arg1 --arg2 --arg3
 ```
 
+Call `subarch-list` without arguments. It lists the supported microarchitectures. (? is this the correct word? ?)
+```
+x86-64-v2
+x86-64-v3
+```
+
 ## compilation
 
 `make`
