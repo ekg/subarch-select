@@ -1,4 +1,5 @@
-#include "cpuinfo_x86.h"
+#include <cpuinfo_x86.h>
+#include <cstring>
 #include <iostream>
 #include <sstream>
 #include <unistd.h>
@@ -146,7 +147,9 @@ int main(int argc, char** argv) {
             ss << " " << argv[j];
         }
         log("executing: " + path + ss.str());
-        execv(path.c_str(), argv+i-1);
+        int error = execv(path.c_str(), argv+i-1);
+        std::cerr << strerror(errno) << "\n";
+        return 1;
     } else {
         return 1;
     }

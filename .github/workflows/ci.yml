@@ -26,4 +26,4 @@ jobs:
            cmake -S. -Bbuild -DBUILD_TESTING=OFF
            cd build
            make
-           ./subarch-select sse2 echo -- success
+           ./subarch-select sse2 /usr/bin/echo -- success
