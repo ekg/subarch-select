@@ -21,3 +21,6 @@ endif ()
 
 add_executable(subarch-select main.cpp)
 target_link_libraries(subarch-select cpu_features)
+
+add_executable(subarch-list subarch-list.cpp)
+target_link_libraries(subarch-list cpu_features)
